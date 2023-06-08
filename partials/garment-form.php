@@ -1,11 +1,4 @@
-<?php 
-require_once 'classes/garment-model.php';
-require_once 'classes/seller-model.php';
-$garmentModel = new GarmentModel(connect($host, $db, $user, $password));
-
-?>
-
-<form action="form-handlers/garment-form-handler.php" method="post">
+<form action='form-handlers/garment-form-handler.php' method='post'>
 
 <label for="garment">Plagg titel: </label>
 <input type="text" name="garment" id="garment">
@@ -16,13 +9,14 @@ $garmentModel = new GarmentModel(connect($host, $db, $user, $password));
 <label for="date">Datum: </label>
 <input type="date" name="date_added" id="date_added">
 
+<label for="date">såld: </label>
+<input type="checkbox" name="sold_status" id="date_added">
 
-        <label for="seller">Säljare:</label>
-        <select name="seller-id" id="seller">
+        <select name="seller_id" id="seller_id">
             <option value="">--Välj säljare--</option>
 
             <?php
-            $sellers = $sellerModel->getAllSellers();
+
             foreach ($sellers as $seller) {
                 echo "<option value='{$seller['id']}'>
                     {$seller['first_name']} {$seller['last_name']}

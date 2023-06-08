@@ -16,19 +16,10 @@ class GarmentModel extends DB {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getGarmentWithSeller(int $id){
-        $query = "SELECT sellers.id, sellers.first_name, sellers.last_name, sellers.email, garments.garment, garments.price, garments.date_added, garments.sold_status, garments.seller_id FROM sellers
-        JOIN garments ON sellers.id = garments.seller_id 
-        WHERE sellers.id = ?";
-        $stmt = $this->pdo->prepare($query);
-        $stmt->execute([$id]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function addGarmentWithSeller(string $garment, string $price, int $date_added, $seller_id) {
+    public function addGarment(string $garment, string $price, int $date, int $sellerId) {
         $query = "INSERT INTO {$this->table} (garment, price, date_added, seller_id) VALUES (?,?,?,?)";
         $stmt = $this->pdo->prepare($query);
-        $stmt->execute([$garment, $price, $date_added, $seller_id]);
+        $stmt->execute([$garment, $price, $date, $sellerId]);
     }
 
      public function getTotalGarments() {

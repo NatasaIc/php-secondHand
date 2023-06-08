@@ -1,5 +1,4 @@
 <?php
-
 $host = 'localhost';
 $db = 'second_hand';
 $user = 'root';

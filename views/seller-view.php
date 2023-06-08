@@ -6,31 +6,30 @@
     class SellerView {
 
     public function renderAllSellers(array $sellers): void{
-        echo "<h4>Lägg till säljare och plagg</h4>";
+        echo "<section class='all-sellers'>";
+        echo "<h4>Lägg till säljare</h4>";
         echo "<table class='list'>
   	    <tr>
         <th>ID</th>
-        <th>Firstname</th>
-        <th>Lastname</th>
+        <th>Förnamn</th>
+        <th>Efternamn</th>
   	    <th>Email</th>
   	    <th>plagg</th>
   	    <th>&nbsp;</th>
-        <th>&nbsp;</th>
   	  </tr>";
         foreach($sellers as $seller) {
                 $id = $seller['id'];
                 $url = "show-seller.php?id=" . $id;
-
             echo "<tr>";
             echo "<td>{$seller["id"]}</td>";
             echo "<td>{$seller["first_name"]}</td>";
             echo "<td>{$seller["last_name"]}</td>";
             echo "<td>{$seller["email"]}</td>";
-            echo "<td><a class='action' href='$url'>View</a></td>";
-            echo "<td><a class='action' href='?seller-id={$seller['id']}&action=update'>Edit</a></td>";
-            echo "<td><a class='action' href='?seller-id={$seller['id']}&action=delete'>Delete</a></td>";
+            echo "<td><a class='action' href='$url'>Visa</a></td>";
+            echo "<td><a class='action' href='?seller-id={$seller['id']}&action=update'>Updatera</a></td>";
      }
      echo "</table";
+     echo "</section>";
     }
 
         public function renderDeleteMessage() {

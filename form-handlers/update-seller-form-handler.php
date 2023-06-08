@@ -1,7 +1,7 @@
 <?php
 
-require '../classes/seller-model.php';
-$sellerModel = new SellerModel(require '../partials/connect.php');
+require_once '../classes/seller-model.php';
+$sellerModel = new SellerModel(require_once '../partials/connect.php');
 
 if((isset($_POST["seller_id"], $_POST["first_name"], $_POST["last_name"], $_POST["email"])) 
     && $_POST["first_name"] !== "" 

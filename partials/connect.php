@@ -1,6 +1,6 @@
 <?php
 
-require "classes/config.php";
+require_once "config.php";
 
 function connect($host, $db, $user, $password){
 

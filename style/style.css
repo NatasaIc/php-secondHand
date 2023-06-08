@@ -1,31 +1,42 @@
 html {
     height: 100%;
     width: 100%;
-    
 }
 
 body {
+    background-color: #eee;
+    box-sizing: border-box;
     height: 980px;
-    width: 100%;
     margin: 0;
     font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    text-align: center;
 }
 
 header {
     width: 100%;
-    height: 40px;
-    margin: 0 0 10px 0;
-    padding: 0;
-    background: #eee;
+    height: 60px;
+    margin: 0 0 20px 0;
     color: black;
+    background: #E86F68;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    -webkit-backdrop-filter: blur(4px);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1px solid #E86F68;
 }
 
 header h1 {
-    margin: 0;
-    padding: 5px;
     font-size: 20px;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
     text-align: center;
+    color: #eee;
+    transition: all .2s ease-in-out;
+}
+
+header h1:hover {
+    transform: scale(1.1);
 }
 
 .navigation {
@@ -33,29 +44,90 @@ header h1 {
     margin: 0;
     padding: 0;
     text-align: center;
+    text-decoration: none;
+}
+.navigation a {
+    color: #272324;
+    font-size: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 10px;
+    transition: all .2s ease-in-out;
+}
+
+.navigation a:hover {
+    color: #9bceb5;
+    transform: scale(1.1);
 }
 
 .actions {
     margin: 1em;
 }
 
-.seller-form {
-    display: flex;
-    flex-direction: column;
-    padding: 10rem;
+ form {
+display: flex;
+flex-wrap: wrap;
 }
 
+label {
+margin: 1rem;
+text-align: left;
+}
+
+input {
+    margin: 1rem;
+    padding: 0.5rem;
+    border: 1px solid;
+    box-shadow: 5px 8px;
+}
+
+ul{
+    padding: 1rem;
+    list-style: none;
+}
+
+li {
+    margin-left: 1rem;
+} 
+
+hr {
+    width: 100px;
+}
+select {
+    padding: 0.5rem;
+    border-style: none;
+    border-radius: 3px;
+}
+button {
+    margin-left: 2rem;
+    height: 35px;
+    width: 100px;
+    border-style: none;
+    background: #EEF0F4;
+    border-radius: 5%;
+    box-shadow: 9.91px 9.91px 15px #D9DADE, -9.91px -9.91px 15px #FFFFFF;
+    transition: all .2s ease-in-out;
+}
+button:hover {
+    background:#9bceb5;
+}
+button:active {
+    transform: scale(0.7);
+}
 /* Lists */
 
 table {
+    width: 100%;
+    transform: translate(0, 5%);
     border-collapse: collapse;
     vertical-align: top;
     margin-bottom: 10rem;
-    border-radius: 6px;
+    background: #EEF0F4;
+    border-radius: 25%;
+    box-shadow: 9.91px 9.91px 15px #D9DADE, -9.91px -9.91px 15px #FFFFFF;
 }
 
 table.list {
-    width: 50%;
     border-radius: 6px;
 }
 
@@ -65,11 +137,12 @@ table.list tr td {
 }
 
 table.list tr th {
-    border: 1px solid green;
-    background: green;
+    padding: 1rem;
+    border: 1px solid #000;
+    border: 1px solid #999999;
+    background: #000;
     color: white;
     text-align: left;
-    padding: 1rem;
 }
 
 footer {
@@ -78,4 +151,31 @@ footer {
     margin: 0 0 10px 0;
     background: #000;
     color: white;
+}
+
+.seller-form {
+   transform: translate(50%);
+}
+
+.show-seller {
+width: 500px;
+height: auto;
+margin-top: 20px;
+background: #EEF0F4;
+border-radius: 25%;
+box-shadow: 9.91px 9.91px 15px #D9DADE, -9.91px -9.91px 15px #FFFFFF;
+
+display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.seller-info {
+    margin-top: 4rem;
+}
+
+.seller-garment {
+    margin-bottom: 4rem;
 }
