@@ -158,8 +158,6 @@ footer {
 }
 
 .show-seller {
-width: 500px;
-height: auto;
 margin-top: 20px;
 display: flex;
 flex-direction: column;
