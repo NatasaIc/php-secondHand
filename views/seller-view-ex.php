@@ -22,6 +22,11 @@ class SellerViewEx {
 
                echo "<div class='seller-garment'>";
                 echo "<h4>Säljarens plagg</h4>";
+
+                $sellerId = $seller['id'];
+                $garmentCost = $seller['id'];
+                $countGarments = $this->garmentModel->getCountGarments($sellerId);
+
                 foreach($seller['garments'] as $garment) {
                     echo "<p>Titel: {$garment['garment']}</p>";
                     echo "<p>Pris: {$garment['price']} kr</p>";
@@ -33,7 +38,9 @@ class SellerViewEx {
                      }
                 
                      echo "<hr>";
+                     $totalCost = $this->garmentModel->getTotalCost($garmentCost);
                 }
+                echo "<p>Totalt pris: {$totalCost} kr</p>";
                 echo "</div>";
                 echo "</section>";
     }

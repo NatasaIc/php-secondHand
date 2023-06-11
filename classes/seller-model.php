@@ -47,18 +47,5 @@ class SellerModel extends DB {
         }
         return null;
     }
-
-    public function deleteSeller (int $id) : void {
-        $query = "DELETE FROM sellers WHERE sellers.id = ?";
-        $stmt = $this->pdo->prepare($query);
-        $stmt->execute([$id]);
-    }
-
-    public function updateSeller(string $firstname, string $lastname, string $email, int $id) {
-        $query = "UPDATE sellers SET first_name = ?, last_name = ?, email = ? WHERE seller.id = ?;";
-        $stmt = $this->pdo->prepare($query);
-        $stmt->execute([$fistname, $lastname, $email, $id]);  
-    }
-
 }
 
