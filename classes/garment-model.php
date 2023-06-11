@@ -9,20 +9,19 @@ class GarmentModel extends DB {
         return $this->getAll($this->table);
     }
 
-    public function getGarmentById(int $id) :array{
-        $query = "SELECT * FROM $this->table WHERE $this->table.id = ?";
+    public function addGarment(string $garment, float $price, int $status, int $sellerId): void {
+
+        try {
+        $date = date('Y-m-d');
+        $query = "INSERT INTO $this->table (`garment`, `price`, `date_added`, `sold_status`, `seller_id`) VALUES (?,?,?,?,?)";
         $stmt = $this->pdo->prepare($query);
-        $stmt->execute([$id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->execute([$garment, $price, $date, $status, $sellerId]);
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
     }
 
-    public function addGarment(string $garment, string $price, int $date, int $sellerId) {
-        $query = "INSERT INTO {$this->table} (garment, price, date_added, seller_id) VALUES (?,?,?,?)";
-        $stmt = $this->pdo->prepare($query);
-        $stmt->execute([$garment, $price, $date, $sellerId]);
-    }
-
-     public function getTotalGarments() {
+     public function getCountGarments() {
             $query = "SELECT COUNT(*) AS total FROM garments WHERE seller_id = ?";
             $stmt = $this->pdo->prepare($query);
             $stmt->execute();

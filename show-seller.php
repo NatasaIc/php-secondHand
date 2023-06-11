@@ -14,7 +14,7 @@ include "partials/nav.php";
 
 $id = filter_var($_GET['id'], FILTER_VALIDATE_INT);
 
-if($id !== false) {
+if($id == true) {
     $sellerViewEx->renderChosenSellerInfo($sellerModel->getSellerWithGarments($id));
 } else {
    echo "något gick fel";

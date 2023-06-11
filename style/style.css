@@ -161,21 +161,22 @@ footer {
 width: 500px;
 height: auto;
 margin-top: 20px;
-background: #EEF0F4;
-border-radius: 25%;
-box-shadow: 9.91px 9.91px 15px #D9DADE, -9.91px -9.91px 15px #FFFFFF;
-
 display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
 }
 
 .seller-info {
     margin-top: 4rem;
+    
 }
 
 .seller-garment {
     margin-bottom: 4rem;
+    background: #EEF0F4;
+    border: 1px solid #999999;
+    border-radius: 25%;
+    box-shadow: 9.91px 9.91px 15px #D9DADE, -9.91px -9.91px 15px #FFFFFF;
 }

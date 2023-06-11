@@ -12,7 +12,7 @@ class GarmentView {
   	    <th>Lager status</th>
   	    <th>Säljare</th>
   	    <th>&nbsp;</th>
-        <th>&nbsp;</th>
+       
   	  </tr>";
          foreach($garments as $garment) {
                 $id = $garment['seller_id'];
@@ -28,7 +28,7 @@ class GarmentView {
                      }
             echo "<td><a href='$url'>{$garment["seller_id"]}</td></a>";
             echo "<td><a class='action' href='?seller-id={$garment['seller_id']}&action=update'>Updatera</a></td>";
-            echo "<td><a class='action' href='?seller-id={$garment['seller_id']}&action=delete'>Ta bort</a></td>";
+            // echo "<td><a class='action' href='?seller-id={$garment['seller_id']}&action=delete'>Ta bort</a></td>";
             echo "</tr>";
      }
      echo "</table";
