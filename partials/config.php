@@ -1,5 +1,5 @@
 <?php
 $host = 'localhost';
 $db = 'second_hand';
-$user = 'root';
-$password = '500199';
+$user = 'secondhand';
+$password = 'secondhand123';

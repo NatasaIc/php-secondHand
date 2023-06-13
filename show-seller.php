@@ -7,7 +7,7 @@ require_once 'classes/garment-model.php';
 $pdo = require 'partials/connect.php';
 
 $sellerModel = new SellerModel($pdo);
-$sellerViewEx = new sellerViewEx($pdo);
+$showSellerView = new ShowSellerView($pdo);
 
 include "partials/header.php";
 include "partials/nav.php";
@@ -15,7 +15,7 @@ include "partials/nav.php";
 $id = filter_var($_GET['id'], FILTER_VALIDATE_INT);
 
 if($id == true) {
-    $sellerViewEx->renderChosenSellerInfo($sellerModel->getSellerWithGarments($id));
+    $showSellerView->renderChosenSellerInfo($sellerModel->getSellerWithGarments($id));
 } else {
    echo "något gick fel";
 }

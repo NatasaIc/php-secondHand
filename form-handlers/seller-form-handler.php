@@ -14,6 +14,6 @@ if((isset($_POST['first_name'], $_POST['last_name'], $_POST['email']))
     $sellerModel->addSeller($firstname, $lastname, $email);
 }
 
-header("Location: ../sellers.php");
+header("Location: ../garments.php");
 
 ?>

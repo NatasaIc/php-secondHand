@@ -1,7 +1,7 @@
 <?php
 
     require_once 'classes/seller-model.php';
-   
+    require_once 'classes/garment-model.php';
 
     class SellerView {
 
@@ -15,7 +15,6 @@
         <th>Efternamn</th>
   	    <th>Email</th>
   	    <th>plagg</th>
-  	    <th>&nbsp;</th>
   	  </tr>";
         foreach($sellers as $seller) {
                 $id = $seller['id'];
@@ -27,17 +26,9 @@
             echo "<td>{$seller["last_name"]}</td>";
             echo "<td>{$seller["email"]}</td>";
             echo "<td><a class='action' href='$url'>Visa</a></td>";
-            echo "<td><a class='action' href='$urlEdit'>Updatera</a></td>";
+            // echo "<td><a class='action' href='$urlEdit'>Updatera</a></td>";
      }
      echo "</table";
      echo "</section>";
     }
-
-        public function renderDeleteMessage() {
-        echo "<section>";
-            echo "<h3>Användaren raderad✅</h3>";
-            // echo "<a href='users.php'>Tillbaka</a>";
-        echo "</section>";
     }
-    }
-
