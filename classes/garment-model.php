@@ -4,57 +4,77 @@ require_once "db.php";
 
 class GarmentModel extends DB {
     protected $table = "garments";
-
-    public function getAllGarments() {
-        return $this->getAll($this->table);
-    }
-
-    public function addGarment(string $garment, int $price, int $date, int $status, int $sellerId): void {
-        $query = "INSERT INTO garments (`garment`, `price`, `date_added`, `sold_status`, `seller_id`) VALUES (?,?,?,?,?)";
-        $stmt = $this->pdo->prepare($query);
-        $stmt->execute([$garment, $price, $date, $status, $sellerId]);
-    }
-
-     public function getCountGarments($sellerId) {
-            $query = "SELECT COUNT(*) AS total FROM garments WHERE seller_id = ?";
-            $stmt = $this->pdo->prepare($query);
+        //Hämta alla plagg
+        public function getAllGarments() {
+        $sql = "SELECT * FROM $this->table ORDER BY garment ASC ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        //Lägg till nytt plagg med säljare
+        public function addGarment(string $garment, int $price, int $sellerId) {
+            $added = date('Y-m-d');
+            $sql = "INSERT INTO garments (garment, price, date_added, seller_id) VALUES (?,?,?,?)";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([$garment, $price, $added, $sellerId]);
+        }
+        //Uppdatera status till såld
+         public function updateToSold(int $garmentId): void {
+            $sql = "UPDATE garments SET sold_status = true, sold_date = CURRENT_DATE() WHERE id = :garmentId";
+            $stmt = $this->pdo->prepare($sql); 
+            $stmt->bindParam(':garmentId', $garmentId);
+            $stmt->execute();
+        }
+        //Antalet plagg från vald säljare
+         public function getCountGarments($sellerId) {
+            $sql = "SELECT COUNT(*) AS total FROM garments WHERE seller_id = ?";
+            $stmt = $this->pdo->prepare($sql);
             $stmt->execute([$sellerId]);
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
             return $result['total'];
         }
-        
-        public function getTotalCost($sellerId){
-            $query = "SELECT SUM(price) AS totalCost FROM garments WHERE seller_id = ?";
-            $stmt = $this->pdo->prepare($query);
+        //Totala priset för plaggen av vald säljare såld eller ej
+         public function getTotalCost($sellerId){
+            $sql = "SELECT SUM(price) AS totalCost FROM garments WHERE seller_id = ?";
+            $stmt = $this->pdo->prepare($sql);
             $stmt->execute([$sellerId]);
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
             return $result['totalCost'];
         }
-
-          public function getEarningsPerSeller($sellerId) {
-            $query = "SELECT SUM(price) AS earnings FROM garments WHERE seller_id = ? AND sold_status IS True";
-            $stmt = $this->pdo->prepare($query);
+        //Intäkt från vald säljare
+         public function getEarningsPerSeller($sellerId) {
+            $sql = "SELECT SUM(price) AS earnings FROM garments WHERE seller_id = ? AND sold_status IS True";
+            $stmt = $this->pdo->prepare($sql);
             $stmt->execute([$sellerId]);
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
         
             return $result['earnings'];
         }
-
-
+        //Intäkter från alla sålda plagg
           public function getTotalSum(){
-            $query = "SELECT SUM(price) AS totalSum FROM garments WHERE sold_status IS True";
-            $stmt = $this->pdo->prepare($query);
+            $sql = "SELECT SUM(price) AS totalSum FROM garments WHERE sold_status IS True";
+            $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
             return $result['totalSum'];
         }
+        //Totalt antal sålda plagg
+         public function getSoldGarmentCount() {
+            $sql = "SELECT COUNT(*) AS count FROM garments WHERE sold_status IS True";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $count = $result['count'];
 
-        public function getSoldGarmentCount() {
-            $query = "SELECT COUNT(*) AS count FROM garments WHERE sold_status IS True";
-            $stmt = $this->pdo->prepare($query);
+            return $count;
+        }
+         //Totalt antal sålda plagg
+         public function getGarmentCount() {
+            $sql = "SELECT COUNT(*) AS count FROM garments WHERE id IS NOT NULL";
+            $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             $count = $result['count'];
@@ -62,10 +82,11 @@ class GarmentModel extends DB {
             return $count;
         }
 
-        public function updateToSold($garmentId) {
-            $query = "UPDATE garments SET sold_status = 1 WHERE id = :id";
-            $stmt = $this->pdo->prepare($query); 
-            $stmt->execute(['id' => $garmentId]);
+        public function getDaysInStock() {
+            $sql = "SELECT DATEDIFF(CURDATE(), date_added) FROM garments";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
 }

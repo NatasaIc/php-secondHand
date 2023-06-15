@@ -4,13 +4,14 @@ require_once 'classes/garment-model.php';
 
 class GarmentView {
     public function renderAllGarments(array $garments){
-        echo "<h4>Lägg till plagg</h4>";
+        echo "<a class='garment-link' href='new-garment.php'>Lägg till plagg</a>";
         echo "<table class='list'>
   	    <tr>
         <th>Plagg</th>
         <th>Pris</th>
-        <th>Datum</th>
+        <th>Skapad</th>
   	    <th>Lager status</th>
+  	    <th>Såld datum</th>
   	    <th>&nbsp;</th>
        
   	  </tr>";
@@ -24,9 +25,17 @@ class GarmentView {
             if($garment['sold_status'] == true){
                      echo "<td>Såld✅</td>";
                      } else {
-                        echo "<td>Inte såld</td>";
+                        echo "<td>
+
+                        <form class='edit-form' action='form-handlers/update-sold-form.php' method='post'>
+                        <input type='hidden' name='garmentId' value='$id'>
+                        <input type='submit' value='Köp'>
+                        </form>
+                        
+                        </td>";
                      }
-            echo "<td><a class='action' href='$editUrl&action=update'>Updatera</a></td>";
+                    echo "<td>{$garment["sold_date"]}</td>";
+            echo "<td><a class='action' href='$editUrl&action=update'>Uppdatera</a></td>";
             echo "</tr>";
      }
      echo "</table";

@@ -1,17 +1,17 @@
 <?php 
 require_once "../classes/garment-model.php";
-$pdo = require "../partials/connect.php";
 
-$garmentModel = new GarmentModel($pdo);
+$garmentModel = new GarmentModel(require_once '../partials/connect.php');
 
-if($_SERVER['REQUEST_METHOD'] === 'POST') {
-if((isset($_POST["sold_status"]))
-    && !empty($_POST["sold_status"])){
-    $status = filter_var($_POST["sold_status"], FILTER_VALIDATE_BOOLEAN);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $garmentModel->updateToSold($status);
+if(isset($_POST['garmentId'])){
+    $garmentId = filter_var($_POST['garmentId'],  FILTER_SANITIZE_NUMBER_INT);
+
+    $garmentModel->updateToSold($garmentId);
+
+    header('Location: ../index.php');
+    exit;
+    }
 }
-}
-
-header("Location: ../index.php");
 ?>

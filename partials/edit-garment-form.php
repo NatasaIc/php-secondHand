@@ -1,9 +1,7 @@
-<form class='edit-form' action="form-handlers/update-sold-form.php" method="post">
+<!-- <form class="edit-form" action="form-handlers/update-sold-form.php" method="post">
 
-<lable for="id" class="edit-heading">Plagg ID: <?php echo $id; ?></lable>
+<label for="id" class="edit-heading">Plagg ID: </label>
 <label for="sold_status">Markera som såld:</label>
-<input type="checkbox" name="sold_status" id="sold_status">
-
-
-<button type="submit">Uppdatera</button>
-</form>
+<input type='hidden' name='garment_id' value="">
+<input type="submit" value="Köp">
+</form> -->

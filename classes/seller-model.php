@@ -4,25 +4,25 @@ require_once "db.php";
 
 class SellerModel extends DB {
     protected $table = "sellers";
-
+    // Hämtar alla säljare
     public function getAllSellers() {
-        $query = "SELECT * FROM $this->table ORDER BY first_name ASC ";
-        $stmt = $this->pdo->prepare($query);
+        $sql = "SELECT * FROM $this->table ORDER BY first_name ASC ";
+        $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
+    // Lägger till ny säljare
     public function addSeller(string $firstname, string $lastname, string $email) {
-        $query = "INSERT INTO sellers (first_name, last_name, email) VALUES (?,?,?)";
-        $stmt = $this->pdo->prepare($query);
+        $sql = "INSERT INTO sellers (first_name, last_name, email) VALUES (?,?,?)";
+        $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$firstname, $lastname, $email]);
     }
-
+    // Hämtar säljare med plagg
     public function getSellerWithGarments(int $id) {
-    $query = "SELECT sellers.id, sellers.first_name, sellers.last_name, sellers.email, garments.garment, garments.price, garments.date_added, garments.sold_status, garments.seller_id FROM sellers
+    $sql = "SELECT sellers.id, sellers.first_name, sellers.last_name, sellers.email, garments.garment, garments.price, garments.date_added, garments.sold_status, garments.sold_date, garments.seller_id FROM sellers
     JOIN garments ON sellers.id = garments.seller_id 
     WHERE sellers.id = ?";
-    $stmt = $this->pdo->prepare($query);
+    $stmt = $this->pdo->prepare($sql);
     $stmt->execute([$id]);
 
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -40,7 +40,8 @@ class SellerModel extends DB {
                 "garment" => $res['garment'],
                 "price" => $res['price'],
                 "date_added" => $res['date_added'],
-                "sold_status" => $res['sold_status']
+                "sold_status" => $res['sold_status'],
+                "sold_date" => $res['sold_date']
             ];
         }
             return $seller;

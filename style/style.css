@@ -43,7 +43,7 @@ header h1:hover {
 
 .navigation {
     width: 100%;
-    margin: 0;
+    margin-bottom: 80px;
     padding: 0;
     text-align: center;
     text-decoration: none;
@@ -53,7 +53,7 @@ header h1:hover {
     font-size: 20px;
     text-decoration: none;
     cursor: pointer;
-    margin: 10px;
+    margin: 15px;
     transition: all .2s ease-in-out;
 }
 
@@ -66,7 +66,12 @@ header h1:hover {
     margin: 1em;
 }
 
- form {
+
+footer {
+ display: none;
+}
+
+form {
 display: flex;
 flex-wrap: wrap;
 }
@@ -96,10 +101,11 @@ hr {
     width: 100px;
 }
 select {
-    padding: 0.5rem;
+    padding: 5px;
     border-style: none;
     border-radius: 3px;
 }
+   
 button {
     margin-left: 2rem;
     height: 35px;
@@ -119,13 +125,13 @@ button:active {
 /* Lists */
 
 table {
-    width: 100%;
-    transform: translate(0, 5%);
+    display: inline-block;
+    margin: 10%;
     border-collapse: collapse;
     vertical-align: top;
     margin-bottom: 10rem;
     background: #EEF0F4;
-    border-radius: 25%;
+    /* border-radius: 25%; */
     box-shadow: 9.91px 9.91px 15px #D9DADE, -9.91px -9.91px 15px #FFFFFF;
 }
 
@@ -140,24 +146,16 @@ table.list tr td {
 
 table.list tr th {
     padding: 1rem;
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
     border: 1px solid #999999;
     background: #000;
     color: white;
     text-align: left;
 }
 
-footer {
-    width: 100%;
-    height: 20px;
-    margin: 0 0 10px 0;
-    background: #000;
-    color: white;
-}
-
 .seller-form {
    transform: translate(50%);
-   margin: 100px 5px 100px 5px;
+   margin: 100px 5px 10px 5px;
 }
 
 .show-seller {
@@ -165,7 +163,6 @@ margin-top: 10%;
 display: flex;
 flex-direction: row;
 justify-content: center;
-
 }
 
 .seller-info {
@@ -176,7 +173,7 @@ justify-content: center;
 }
 
 .seller-garment {
-    margin-top: 25px;
+    margin-top: 5px;
     background: #EEF0F4;
     border: 1px solid #999999;
     border-radius: 6px;
@@ -209,4 +206,25 @@ justify-content: center;
 
 .edit-heading {
     letter-spacing: 3px;
+}
+
+.garment-form {
+    display: inline-block;
+    margin-top: 15%;
+}
+
+.select-garment {
+    padding: 10px;
+}
+
+.garment-link {
+    display: flex;
+    justify-content: center;
+    color: #000;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+.garment-link:hover {
+    color: #9bceb5;
 }

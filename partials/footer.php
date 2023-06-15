@@ -1,10 +1,6 @@
-<!-- <footer>
-  &copy; <?php echo date('Y'); ?> Second Hand
+<footer class="footer-wrapper">
+
 </footer>
 
 </body>
-</html>
-
-<?php
-$pdo = require_once "connect.php";
-?> -->
+</html> 

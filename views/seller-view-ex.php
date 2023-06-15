@@ -22,24 +22,25 @@ class ShowSellerView {
                             <p><strong>Förnamn: </strong> {$seller['first_name']} </p>
                             <p><strong>Efternamn: </strong> {$seller['last_name']} </p>
                             <p><strong>Email: </strong> {$seller['email']}</p>
-                        
+                            <div>
+                            <h3>Antal Plagg</h3>
+                            <p>Säljaren har {$totlaGarments} plagg</p>
+                            </div>
                         </div>";
 
                 echo "<div class='seller-garment'>";
-                echo "<div>
-                    <h3>Antal Plagg</h3>
-                    <p>Säljaren har {$totlaGarments} plagg</p>
-                    </div>";
                 foreach($seller['garments'] as $garment) {
-                    echo "<p class='item'>Titel: {$garment['garment']}</p>";
+                    echo "<p class='item'><strong>Plagg:</strong> {$garment['garment']}</p>";
                     echo "<p class='item'>Pris: {$garment['price']} kr</p>";
-                    echo "<p class='item'>Datum: {$garment['date_added']}</p>";
+                    echo "<p class='item'>Skapad: {$garment['date_added']}</p>";
                      if($garment['sold_status'] == true){
                      echo "<span class='item'>Status: Såld✅</span>";
                      } else {
                         echo "<span class='item'>Inte såld</span>";
                      }
-                
+                     if($garment['sold_date'] !== NULL) {
+                        echo "<p class='item'>Datum: {$garment['sold_date']}</p>";
+                     }
                      echo "<hr>";
                      $totalCost = $this->garmentModel->getTotalCost($garmentCost);
                      $earningsSum = $this->garmentModel->getEarningsPerSeller($garmentSum);
@@ -56,11 +57,12 @@ class ShowSellerView {
 
     public function renderStatusIndex() {
         $countSoldGarments = $this->garmentModel->getSoldGarmentCount();
+        $countGarments = $this->garmentModel-> getGarmentCount();
         $soldGarments = $this->garmentModel->getTotalSum();
 
         echo "<div class='index-container'>
-        <h3>{$countSoldGarments} sålda plagg</h3>
-        <h3>Intäkt:</h3><span class='kr-span'> {$soldGarments} kr</span>
+        <h3>{$countSoldGarments} av {$countGarments} plagg sålda</h3>
+        <h3>Intäkter:</h3><span class='kr-span'> {$soldGarments} kr</span>
         </div>";
     }
 }

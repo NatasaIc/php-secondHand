@@ -7,7 +7,7 @@
 
     public function renderAllSellers(array $sellers): void{
         echo "<section class='all-sellers'>";
-        echo "<h4>Lägg till säljare</h4>";
+        echo "<h4>Lägg till ny säljare</h4>";
         echo "<table class='list'>
   	    <tr>
         <th>ID</th>
@@ -26,7 +26,6 @@
             echo "<td>{$seller["last_name"]}</td>";
             echo "<td>{$seller["email"]}</td>";
             echo "<td><a class='action' href='$url'>Visa</a></td>";
-            // echo "<td><a class='action' href='$urlEdit'>Updatera</a></td>";
      }
      echo "</table";
      echo "</section>";
