@@ -17,7 +17,8 @@ class GarmentView {
   	  </tr>";
          foreach($garments as $garment) {
                 $id = $garment['id'];
-                $editUrl = "edit-garment.php?id=" . $id;
+                $sellerId = $garment['seller_id'];
+                $urlSeller = "show-seller.php?id=" . $sellerId;
             echo "<tr>";
             echo "<td>{$garment["garment"]}</td>";
             echo "<td>{$garment["price"]} kr</td>";
@@ -35,9 +36,9 @@ class GarmentView {
                         </td>";
                      }
                     echo "<td>{$garment["sold_date"]}</td>";
-            echo "<td><a class='action' href='$editUrl&action=update'>Uppdatera</a></td>";
+            echo "<td><a class='action' href='$urlSeller'>Visa</a></td>";
             echo "</tr>";
      }
      echo "</table";
-}
+    }
 }

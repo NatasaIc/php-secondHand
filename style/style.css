@@ -146,7 +146,6 @@ table.list tr td {
 
 table.list tr th {
     padding: 1rem;
-    /* border: 1px solid #000; */
     border: 1px solid #999999;
     background: #000;
     color: white;
@@ -155,7 +154,7 @@ table.list tr th {
 
 .seller-form {
    transform: translate(50%);
-   margin: 100px 5px 10px 5px;
+   margin: 150px 5px 10px 5px;
 }
 
 .show-seller {

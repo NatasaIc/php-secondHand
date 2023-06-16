@@ -19,7 +19,6 @@
         foreach($sellers as $seller) {
                 $id = $seller['id'];
                 $url = "show-seller.php?id=" . $id;
-                $urlEdit = "edit-seller.php?id=" . $id . "&action=update";
             echo "<tr>";
             echo "<td>{$seller["id"]}</td>";
             echo "<td>{$seller["first_name"]}</td>";
